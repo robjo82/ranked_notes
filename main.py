@@ -6,8 +6,19 @@ files = [
     "excel/test2.xlsx"
 ]
 
+def write_value(file, instruction, cell_position,sheet='Feuil1'):
+    """This function allow to write a value or an instruction in a gave cell_position, on a file for wich path is required"""
+    workbook = openpyxl.load_workbook(file)
+    sheet = workbook[sheet]
+    sheet[cell_position] = instruction
+    workbook.save(file)
+
+
+
+#sheet['F9'].style='Currency' permet de modifier le style d'une cellule
+
 def get_value(file, cell_position,sheet='Feuil1'):
-    "This function is getting and returning the value of the gave cell, in a sheet of a file gave too"
+    """This function is getting and returning the value of the gave cell, in a sheet of a file gave too"""
     workbook = openpyxl.load_workbook(file)
     sheet = workbook[sheet]
     value = sheet[cell_position].value
